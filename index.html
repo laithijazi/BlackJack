@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #2a5a32;
+            color: white;
+            box-sizing: border-box;
+        }
+        
+        .game-container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        canvas {
+            border: 3px solid #fff;
+            margin-bottom: 20px;
+            max-width: 100%;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .game-info {
+            margin-top: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            border-radius: 5px;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Blackjack</h1>
+        <canvas id="gameCanvas" role="img" aria-label="Blackjack game board"></canvas>
+        <div class="button-container">
+            <button id="hitButton" aria-label="Hit - Take another card">Hit</button>
+            <button id="stayButton" aria-label="Stand - End your turn">Stand</button>
+            <button id="newGameButton" aria-label="Start a new game">New Game</button>
+        </div>
+        <div class="game-info">
+            <h2>How to Play</h2>
+            <p>Try to get as close to 21 without going over. Face cards are worth 10, Aces are 1 or 11.</p>
+            <p>Press "Hit" to take another card or "Stand" to end your turn.</p>
+        </div>
+    </div>
+    <div id="game-announcer" class="sr-only" aria-live="polite"></div>
+    <script src="blackjack.js"></script>
+</body>
+</html>
