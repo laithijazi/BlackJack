@@ -557,8 +557,11 @@ class BlackJack {
             const section = playerSections[p];
             const hand = this.playerHands[p];
             
-            // Draw player label
-            const label = `Player ${p + 1}${p === this.currentPlayer && !this.gameOver ? " (Your Turn)" : ""}`;
+            // Calculate player's score
+            const finalSum = this.reducePlayerAce(p);
+
+            // Draw player label with score
+            const label = `Player ${p + 1}${p === this.currentPlayer && !this.gameOver ? " (Your Turn)" : ""} - Score: ${finalSum}`;
             this.ctx.font = `bold ${Math.max(16, this.canvas.width / 40)}px Arial`;
             this.ctx.fillStyle = "white";
             this.ctx.fillText(label, section.x, section.y);
@@ -582,11 +585,6 @@ class BlackJack {
                 this.ctx.fillStyle = "yellow";
                 this.ctx.fillText(`+${hand.length - maxVisibleCards} more`, section.x + section.width - 50, section.y + 25);
             }
-
-            // Display player's score
-            const finalSum = this.reducePlayerAce(p);
-            this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Score: ${finalSum}`, section.x, section.y + this.cardHeight + 20);
 
             // Display result if game is over
             if (this.gameOver) {
